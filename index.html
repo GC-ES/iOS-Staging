@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Setup Required</title>
+    <link rel="manifest" href="manifest.json">
     <style>
         /* Forces the web page to act like a native full-screen app */
         html, body {
@@ -49,5 +50,15 @@
         <p>Please contact IT Support</p>
     </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Offline service worker active!', reg))
+                    .catch(err => console.error('Service worker failed:', err));
+            });
+        }
+    </script>
+    
 </body>
 </html>
